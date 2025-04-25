@@ -27,22 +27,22 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
 
   const navItems = [
     {
-      name: "Dashboard",
+      name: "Painel",
       path: "/",
       icon: <LayoutDashboard className="h-5 w-5 mr-3" />,
     },
     {
-      name: "Clients",
+      name: "Clientes",
       path: "/clients",
       icon: <Users className="h-5 w-5 mr-3" />,
     },
     {
-      name: "Content",
+      name: "Conteúdo",
       path: "/content",
       icon: <Image className="h-5 w-5 mr-3" />,
     },
     {
-      name: "Settings",
+      name: "Configurações",
       path: "/settings",
       icon: <Cog className="h-5 w-5 mr-3" />,
     },
@@ -68,7 +68,7 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
                 <Menu className="h-6 w-6" />
               </Button>
               <h1 className="ml-4 text-lg font-semibold text-gray-800">
-                Client Repository
+                Repositório de Clientes
               </h1>
             </div>
             <Button
@@ -92,7 +92,7 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
         <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center">
             <span className="text-xl font-bold text-sidebar-foreground">
-              Client Repository
+              Repositório de Clientes
             </span>
           </div>
           {isMobile && (
@@ -131,7 +131,7 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
             className="flex w-full items-center px-3 py-2.5 text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent/50 rounded-md transition"
           >
             <LogOut className="h-5 w-5 mr-3" />
-            Logout
+            Sair
           </button>
         </nav>
       </div>
@@ -148,16 +148,16 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
               <div className="flex justify-between items-center h-full">
                 <h1 className="text-xl font-semibold text-gray-800">
-                  {title || "Dashboard"}
+                  {title || "Painel"}
                 </h1>
                 <div className="flex items-center space-x-4">
                   <button className="flex items-center text-sm text-gray-700 hover:text-gray-900">
                     <img
                       className="h-8 w-8 rounded-full object-cover"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt="Admin User"
+                      alt="Usuário Admin"
                     />
-                    <span className="ml-2">Admin User</span>
+                    <span className="ml-2">Usuário Admin</span>
                   </button>
                 </div>
               </div>
@@ -171,7 +171,7 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
 
         <footer className="bg-white border-t border-gray-200 p-4">
           <div className="max-w-7xl mx-auto text-center text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Client Repository System. All rights reserved.
+            &copy; {new Date().getFullYear()} Sistema de Repositório de Clientes. Todos os direitos reservados.
           </div>
         </footer>
       </div>

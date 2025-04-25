@@ -26,22 +26,22 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const loginSchema = z.object({
-  username: z.string().min(1, "Username is required"),
-  password: z.string().min(1, "Password is required"),
+  username: z.string().min(1, "Nome de usuário é obrigatório"),
+  password: z.string().min(1, "Senha é obrigatória"),
 });
 
 const registerSchema = z.object({
-  username: z.string().min(3, "Username must be at least 3 characters"),
+  username: z.string().min(3, "Nome de usuário deve ter pelo menos 3 caracteres"),
   password: z
     .string()
-    .min(8, "Password must be at least 8 characters")
+    .min(8, "Senha deve ter pelo menos 8 caracteres")
     .regex(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-      "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+      "Senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número"
     ),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords do not match",
+  message: "As senhas não coincidem",
   path: ["confirmPassword"],
 });
 
@@ -95,18 +95,18 @@ export default function AuthPage() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* Auth Form */}
+      {/* Formulário de Autenticação */}
       <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-6">
         <div className="w-full max-w-md">
           <Card>
             <CardHeader className="space-y-1">
               <CardTitle className="text-2xl font-bold">
-                Client Repository System
+                Sistema de Repositório de Clientes
               </CardTitle>
               <CardDescription>
                 {activeTab === "login"
-                  ? "Sign in to manage your client repositories"
-                  : "Create an account to get started"}
+                  ? "Entre para gerenciar os repositórios de seus clientes"
+                  : "Crie uma conta para começar"}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -117,8 +117,8 @@ export default function AuthPage() {
                 className="w-full"
               >
                 <TabsList className="grid w-full grid-cols-2 mb-4">
-                  <TabsTrigger value="login">Login</TabsTrigger>
-                  <TabsTrigger value="register">Register</TabsTrigger>
+                  <TabsTrigger value="login">Entrar</TabsTrigger>
+                  <TabsTrigger value="register">Registrar</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="login">
@@ -132,10 +132,10 @@ export default function AuthPage() {
                         name="username"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Email or Username</FormLabel>
+                            <FormLabel>Email ou Nome de Usuário</FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="admin@example.com"
+                                placeholder="admin@exemplo.com"
                                 {...field}
                               />
                             </FormControl>
@@ -148,7 +148,7 @@ export default function AuthPage() {
                         name="password"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Password</FormLabel>
+                            <FormLabel>Senha</FormLabel>
                             <FormControl>
                               <Input
                                 type="password"
@@ -163,9 +163,16 @@ export default function AuthPage() {
                       <Button
                         type="submit"
                         className="w-full"
-                        isLoading={loginMutation.isPending}
+                        disabled={loginMutation.isPending}
                       >
-                        Sign In
+                        {loginMutation.isPending ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Entrando...
+                          </>
+                        ) : (
+                          "Entrar"
+                        )}
                       </Button>
                     </form>
                   </Form>
@@ -182,10 +189,10 @@ export default function AuthPage() {
                         name="username"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Email or Username</FormLabel>
+                            <FormLabel>Email ou Nome de Usuário</FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="admin@example.com"
+                                placeholder="admin@exemplo.com"
                                 {...field}
                               />
                             </FormControl>
@@ -198,7 +205,7 @@ export default function AuthPage() {
                         name="password"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Password</FormLabel>
+                            <FormLabel>Senha</FormLabel>
                             <FormControl>
                               <Input
                                 type="password"
@@ -215,7 +222,7 @@ export default function AuthPage() {
                         name="confirmPassword"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Confirm Password</FormLabel>
+                            <FormLabel>Confirmar Senha</FormLabel>
                             <FormControl>
                               <Input
                                 type="password"
@@ -230,9 +237,16 @@ export default function AuthPage() {
                       <Button
                         type="submit"
                         className="w-full"
-                        isLoading={registerMutation.isPending}
+                        disabled={registerMutation.isPending}
                       >
-                        Create Account
+                        {registerMutation.isPending ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Criando...
+                          </>
+                        ) : (
+                          "Criar Conta"
+                        )}
                       </Button>
                     </form>
                   </Form>
@@ -242,8 +256,8 @@ export default function AuthPage() {
             <CardFooter className="justify-center">
               <p className="text-sm text-gray-500">
                 {activeTab === "login"
-                  ? "Don't have an account? "
-                  : "Already have an account? "}
+                  ? "Não tem uma conta? "
+                  : "Já tem uma conta? "}
                 <button
                   type="button"
                   className="text-primary hover:underline"
@@ -251,7 +265,7 @@ export default function AuthPage() {
                     setActiveTab(activeTab === "login" ? "register" : "login")
                   }
                 >
-                  {activeTab === "login" ? "Sign up" : "Sign in"}
+                  {activeTab === "login" ? "Registre-se" : "Entre"}
                 </button>
               </p>
             </CardFooter>
@@ -259,12 +273,12 @@ export default function AuthPage() {
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Seção Hero */}
       <div className="hidden md:flex md:w-1/2 bg-primary flex-col justify-center items-center p-10 text-white">
         <div className="max-w-md text-center">
-          <h1 className="text-4xl font-bold mb-6">Client Media Repository</h1>
+          <h1 className="text-4xl font-bold mb-6">Repositório de Mídia para Clientes</h1>
           <p className="text-xl mb-8">
-            Create exclusive media repositories for your clients with secure access and easy management.
+            Crie repositórios de mídia exclusivos para seus clientes com acesso seguro e gerenciamento fácil.
           </p>
           <div className="space-y-6">
             <div className="flex items-center">
@@ -285,7 +299,7 @@ export default function AuthPage() {
                   <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
                 </svg>
               </div>
-              <p className="text-left">Upload and organize photos for clients</p>
+              <p className="text-left">Carregue e organize fotos para clientes</p>
             </div>
             <div className="flex items-center">
               <div className="rounded-full bg-white/20 p-2 mr-4">
@@ -307,7 +321,7 @@ export default function AuthPage() {
                   <path d="M16 6 6 16" />
                 </svg>
               </div>
-              <p className="text-left">Embed YouTube videos in client repositories</p>
+              <p className="text-left">Incorpore vídeos do YouTube nos repositórios de clientes</p>
             </div>
             <div className="flex items-center">
               <div className="rounded-full bg-white/20 p-2 mr-4">
@@ -326,7 +340,7 @@ export default function AuthPage() {
                   <path d="m9 12 2 2 4-4" />
                 </svg>
               </div>
-              <p className="text-left">Provide secure, unique access links for clients</p>
+              <p className="text-left">Forneça links de acesso seguros e exclusivos para clientes</p>
             </div>
           </div>
         </div>

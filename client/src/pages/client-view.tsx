@@ -39,8 +39,8 @@ export default function ClientView({ uniqueId }: ClientViewProps) {
   useEffect(() => {
     if (error) {
       toast({
-        title: "Error",
-        description: "This client repository link is invalid or has expired.",
+        title: "Erro",
+        description: "Este link de repositório de cliente é inválido ou expirou.",
         variant: "destructive",
       });
       navigate("/client-not-found");
@@ -63,16 +63,16 @@ export default function ClientView({ uniqueId }: ClientViewProps) {
   }
 
   if (!client) {
-    return null; // Navigate to not-found happens in useEffect
+    return null; // Navegação para not-found acontece no useEffect
   }
 
   return (
     <div className="max-w-7xl mx-auto pt-6 px-4 pb-12">
-      {/* Client Header */}
+      {/* Cabeçalho do Cliente */}
       <Card className="mb-6">
         <div className="border-b border-gray-200 px-6 py-5">
           <h1 className="text-2xl font-bold text-gray-800">{client.name}</h1>
-          <p className="text-gray-600 mt-1">{client.description || "Your personal content repository"}</p>
+          <p className="text-gray-600 mt-1">{client.description || "Seu repositório de conteúdo pessoal"}</p>
         </div>
         
         <div className="px-6 py-4">
@@ -82,14 +82,14 @@ export default function ClientView({ uniqueId }: ClientViewProps) {
             onValueChange={setActiveTab}
           >
             <TabsList>
-              <TabsTrigger value="photos">Photos</TabsTrigger>
-              <TabsTrigger value="videos">Videos</TabsTrigger>
+              <TabsTrigger value="photos">Fotos</TabsTrigger>
+              <TabsTrigger value="videos">Vídeos</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
       </Card>
       
-      {/* Photos Content */}
+      {/* Conteúdo de Fotos */}
       <TabsContent value="photos" className={activeTab === "photos" ? "block" : "hidden"}>
         {isLoadingPhotos ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -119,7 +119,7 @@ export default function ClientView({ uniqueId }: ClientViewProps) {
                     <p className="text-sm text-gray-600 mt-1">{photo.description}</p>
                   )}
                   <span className="text-xs text-gray-500 mt-2 block">
-                    Added {formatDate(photo.createdAt)}
+                    Adicionado em {formatDate(photo.createdAt)}
                   </span>
                 </div>
               </div>
@@ -141,13 +141,13 @@ export default function ClientView({ uniqueId }: ClientViewProps) {
                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" 
               />
             </svg>
-            <h3 className="mt-4 text-lg font-medium text-gray-900">No photos available</h3>
-            <p className="mt-2 text-sm text-gray-500">There are no photos in this repository yet.</p>
+            <h3 className="mt-4 text-lg font-medium text-gray-900">Nenhuma foto disponível</h3>
+            <p className="mt-2 text-sm text-gray-500">Não há fotos neste repositório ainda.</p>
           </div>
         )}
       </TabsContent>
       
-      {/* Videos Content */}
+      {/* Conteúdo de Vídeos */}
       <TabsContent value="videos" className={activeTab === "videos" ? "block" : "hidden"}>
         {isLoadingVideos ? (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -181,7 +181,7 @@ export default function ClientView({ uniqueId }: ClientViewProps) {
                     <p className="text-sm text-gray-600 mt-1">{video.description}</p>
                   )}
                   <span className="text-xs text-gray-500 mt-2 block">
-                    Added {formatDate(video.createdAt)}
+                    Adicionado em {formatDate(video.createdAt)}
                   </span>
                 </div>
               </div>
@@ -203,8 +203,8 @@ export default function ClientView({ uniqueId }: ClientViewProps) {
                 d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" 
               />
             </svg>
-            <h3 className="mt-4 text-lg font-medium text-gray-900">No videos available</h3>
-            <p className="mt-2 text-sm text-gray-500">There are no videos in this repository yet.</p>
+            <h3 className="mt-4 text-lg font-medium text-gray-900">Nenhum vídeo disponível</h3>
+            <p className="mt-2 text-sm text-gray-500">Não há vídeos neste repositório ainda.</p>
           </div>
         )}
       </TabsContent>

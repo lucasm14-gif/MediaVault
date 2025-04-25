@@ -14,11 +14,11 @@ export default function ClientNotFound() {
             <LinkIcon className="h-8 w-8 text-red-500" />
           </div>
           
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Invalid Client Link</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">Link de Cliente Inválido</h2>
           
           <p className="text-gray-600 mb-6">
-            This client repository link is invalid or has expired. 
-            Please contact your administrator for assistance.
+            Este link de repositório de cliente é inválido ou expirou. 
+            Por favor, entre em contato com o administrador para obter ajuda.
           </p>
           
           <div className="flex flex-wrap gap-3 justify-center">
@@ -26,13 +26,13 @@ export default function ClientNotFound() {
               variant="outline"
               onClick={() => navigate("/")}
             >
-              Go to Home
+              Ir para Home
             </Button>
             
             <Button
               onClick={() => navigate("/auth")}
             >
-              Sign In as Admin
+              Entrar como Admin
             </Button>
           </div>
         </CardContent>
