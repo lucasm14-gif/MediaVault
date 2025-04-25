@@ -109,18 +109,18 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
 
         <nav className="mt-6 px-3">
           {navItems.map((item) => (
-            <Link key={item.path} href={item.path}>
-              <a
-                className={`flex items-center px-3 py-2.5 mb-1 text-sm font-medium rounded-md transition ${
-                  location === item.path
-                    ? "text-sidebar-primary bg-sidebar-accent"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent/50"
-                }`}
-                onClick={() => isMobile && setSidebarOpen(false)}
-              >
-                {item.icon}
-                {item.name}
-              </a>
+            <Link 
+              key={item.path} 
+              href={item.path}
+              className={`flex items-center px-3 py-2.5 mb-1 text-sm font-medium rounded-md transition ${
+                location === item.path
+                  ? "text-sidebar-primary bg-sidebar-accent"
+                  : "text-sidebar-foreground hover:bg-sidebar-accent/50"
+              }`}
+              onClick={() => isMobile && setSidebarOpen(false)}
+            >
+              {item.icon}
+              {item.name}
             </Link>
           ))}
 
