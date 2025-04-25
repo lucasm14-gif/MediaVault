@@ -71,8 +71,8 @@ export default function SettingsPage() {
   const { toast } = useToast();
   const { user } = useAuth();
   const [storageUsed] = useState(4.2); // In GB
-  const [storageLimit] = useState(10); // In GB
-  const storagePercentage = (storageUsed / storageLimit) * 100;
+  const [storageLimit] = useState(Infinity); // Unlimited storage
+  const storagePercentage = 20; // Just show a small percentage since storage is unlimited
 
   // Profile form
   const profileForm = useForm<ProfileFormValues>({
